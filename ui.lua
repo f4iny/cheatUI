@@ -10,22 +10,23 @@ ScreenGui.Parent = game.CoreGui
 MainFrame.Parent = ScreenGui
 MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Черный цвет окна
 MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)  -- Начальная позиция окна
-MainFrame.Size = UDim2.new(0, 400, 0, 300)  -- Размер окна
+MainFrame.Size = UDim2.new(0, 400, 0, 300)  -- Размер окна 400x300 пикселей
 
 -- Настройка верхней части окна (Title Bar)
 TitleBar.Parent = MainFrame
 TitleBar.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- Серый цвет для верхней части
-TitleBar.Size = UDim2.new(1, 0, 0, 30)  -- Верхняя часть окна с заголовком
+TitleBar.Size = UDim2.new(0, 400, 0, 30)  -- Размер верхней панели 400x30 пикселей
 TitleBar.Position = UDim2.new(0, 0, 0, 0)
 
 -- Настройка текстового заголовка
 TitleLabel.Parent = TitleBar
 TitleLabel.Text = "Eblanix"
-TitleLabel.Size = UDim2.new(1, 0, 1, 0)
+TitleLabel.Size = UDim2.new(0, 400, 0, 30)
 TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
 TitleLabel.BackgroundTransparency = 1
-TitleLabel.Font = Enum.Font.SourceSans
-TitleLabel.TextSize = 20
+TitleLabel.Font = Enum.Font.GothamBold  -- Шрифт похожий на "Internal"
+TitleLabel.TextSize = 12  -- Размер шрифта 12 пунктов
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Текст выровнен по левому краю
 
 -- Для перетаскивания только через верхнюю часть (Title Bar)
 local dragging = false
