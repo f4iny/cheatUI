@@ -5,8 +5,10 @@ local TitleBar = Instance.new("Frame")
 local TitleLabel = Instance.new("TextLabel")
 local ESPLabel = Instance.new("TextLabel")
 
--- Добавляем объект для округления углов
-local UICorner = Instance.new("UICorner")
+-- Добавляем объект для округления углов основного меню
+local MainUICorner = Instance.new("UICorner")
+-- Добавляем объект для округления верхних углов TitleBar
+local TitleUICorner = Instance.new("UICorner")
 
 ScreenGui.Parent = game.CoreGui
 
@@ -17,14 +19,25 @@ MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)  -- Начальная позиц
 MainFrame.Size = UDim2.new(0, 480, 0, 360)  -- Новый размер окна 480x360 пикселей
 
 -- Применение округления углов к основному фрейму
-UICorner.CornerRadius = UDim.new(0, 13)  -- Радиус округления 13
-UICorner.Parent = MainFrame
+MainUICorner.CornerRadius = UDim.new(0, 16)  -- Радиус округления 16
+MainUICorner.Parent = MainFrame
 
 -- Настройка верхней части окна (Title Bar)
 TitleBar.Parent = MainFrame
 TitleBar.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- Серый цвет для верхней части
 TitleBar.Size = UDim2.new(0, 480, 0, 36)  -- Новый размер верхней панели 480x36 пикселей
 TitleBar.Position = UDim2.new(0, 0, 0, 0)
+
+-- Применение округления только верхних углов к TitleBar
+TitleUICorner.CornerRadius = UDim.new(0, 16)  -- Радиус округления 16
+TitleUICorner.Parent = TitleBar
+TitleUICorner.Name = "TitleUICorner"
+
+-- Ограничение округления только для верхних углов TitleBar
+TitleUICorner.TopLeft = true
+TitleUICorner.TopRight = true
+TitleUICorner.BottomLeft = false
+TitleUICorner.BottomRight = false
 
 -- Настройка текстового заголовка "Eblanix"
 TitleLabel.Parent = TitleBar
