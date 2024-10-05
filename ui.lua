@@ -87,3 +87,22 @@ UserInputService.InputBegan:Connect(function(input)
         MainFrame.Visible = isMenuVisible
     end
 end)
+
+-- Функция для вывода уведомления
+local function ShowNotification(message)
+    -- Создаем окно уведомления
+    local notification = Instance.new("TextLabel")
+    notification.Size = UDim2.new(0, 300, 0, 50)
+    notification.Position = UDim2.new(0.5, -150, 0.8, 0)
+    notification.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    notification.TextColor3 = Color3.fromRGB(255, 255, 255)
+    notification.Text = message
+    notification.Parent = game.CoreGui
+    
+    -- Удаляем уведомление через 5 секунд
+    game:GetService("Debris"):AddItem(notification, 5)
+end
+
+-- Пример вызова уведомления
+ShowNotification("Меню успешно включено!")
+
