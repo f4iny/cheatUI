@@ -8,7 +8,7 @@ ScreenGui.Parent = game.CoreGui
 
 -- Настройка главного окна
 MainFrame.Parent = ScreenGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 255)  -- Черный цвет окна
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Черный цвет окна
 MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)  -- Начальная позиция окна
 MainFrame.Size = UDim2.new(0, 400, 0, 300)  -- Размер окна 400x300 пикселей
 
@@ -21,10 +21,11 @@ TitleBar.Position = UDim2.new(0, 0, 0, 0)
 -- Настройка текстового заголовка
 TitleLabel.Parent = TitleBar
 TitleLabel.Text = "Eblanix"
-TitleLabel.Size = UDim2.new(0, 400, 0, 30)
+TitleLabel.Size = UDim2.new(0, 60, 0, 30)  -- Размер текста 60x30 пикселей
+TitleLabel.Position = UDim2.new(0, 13, 0, 0)  -- Отступ 13 пикселей от левого края
 TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
 TitleLabel.BackgroundTransparency = 1
-TitleLabel.Font = Enum.Font.GothamBold  -- Шрифт похожий на "Internal"
+TitleLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
 TitleLabel.TextSize = 12  -- Размер шрифта 12 пунктов
 TitleLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Текст выровнен по левому краю
 
