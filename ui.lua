@@ -7,7 +7,7 @@ local ESPLabel = Instance.new("TextLabel")
 
 -- Добавляем объект для округления углов основного меню
 local MainUICorner = Instance.new("UICorner")
--- Добавляем объект для округления верхних углов TitleBar
+-- Добавляем объект для округления углов верхней части
 local TitleUICorner = Instance.new("UICorner")
 
 ScreenGui.Parent = game.CoreGui
@@ -28,16 +28,17 @@ TitleBar.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- Серый цвет �
 TitleBar.Size = UDim2.new(0, 480, 0, 36)  -- Новый размер верхней панели 480x36 пикселей
 TitleBar.Position = UDim2.new(0, 0, 0, 0)
 
--- Применение округления только верхних углов к TitleBar
-TitleUICorner.CornerRadius = UDim.new(0, 16)  -- Радиус округления 15
+-- Применение округления углов к верхней части (округляются все углы)
+TitleUICorner.CornerRadius = UDim.new(0, 16)  -- Радиус округления 16
 TitleUICorner.Parent = TitleBar
-TitleUICorner.Name = "TitleUICorner"
 
--- Ограничение округления только для верхних углов TitleBar
-TitleUICorner.TopLeft = true
-TitleUICorner.TopRight = true
-TitleUICorner.BottomLeft = false
-TitleUICorner.BottomRight = false
+-- Дополнительный фрейм для нижней части TitleBar (создаем прямоугольник для выравнивания нижних углов)
+local BottomRect = Instance.new("Frame")
+BottomRect.Parent = TitleBar
+BottomRect.BackgroundColor3 = TitleBar.BackgroundColor3
+BottomRect.BorderSizePixel = 0
+BottomRect.Position = UDim2.new(0, 0, 1, -16)  -- На границе нижних углов панели
+BottomRect.Size = UDim2.new(1, 0, 0, 16)  -- Высота 16 пикселей, чтобы закрыть нижние углы
 
 -- Настройка текстового заголовка "Eblanix"
 TitleLabel.Parent = TitleBar
@@ -60,6 +61,7 @@ ESPLabel.BackgroundTransparency = 1
 ESPLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
 ESPLabel.TextSize = 24  -- Размер шрифта 24 пункта
 ESPLabel.TextXAlignment = Enum.TextXAlignment.Center  -- Текст по центру горизонтали
+
 
 -- Первый CheckBox (Boxes)
 local CheckBox1 = Instance.new("Frame")
