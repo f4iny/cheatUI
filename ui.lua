@@ -29,7 +29,7 @@ TitleBar.Size = UDim2.new(0, 480, 0, 36)  -- Новый размер верхн�
 TitleBar.Position = UDim2.new(0, 0, 0, 0)
 
 -- Применение округления только верхних углов к TitleBar
-TitleUICorner.CornerRadius = UDim.new(0, 16)  -- Радиус округления 16
+TitleUICorner.CornerRadius = UDim.new(0, 16)  -- Радиус округления 15
 TitleUICorner.Parent = TitleBar
 TitleUICorner.Name = "TitleUICorner"
 
