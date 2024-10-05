@@ -44,6 +44,7 @@ local function getResizeDirection(inputPos)
     return resizingDirection
 end
 
+local success, result = pcall(function()
 -- Функция для изменения иконки курсора
 local function updateCursorIcon(resizeDirection)
     if #resizeDirection == 0 then
@@ -67,6 +68,11 @@ local function updateCursorIcon(resizeDirection)
             Mouse.Icon = "rbxasset://textures/Cursors/ArrowUpLeftCursor.png"  -- Диагональ вверх влево
         end
     end
+end
+end)
+
+if not success then
+    warn("Ошибка: ", result)
 end
 
 -- Перетаскивание окна
