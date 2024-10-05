@@ -110,13 +110,26 @@ UserInputService.InputBegan:Connect(function(input)
 end)
 
 -- Блокировка действий игры при взаимодействии с меню
-UserInputService.InputBegan:Connect(function(input, gameProcessed)
-    if ScreenGui.Enabled and gameProcessed then
-        -- Если пользователь взаимодействует с GUI, блокируем обработку нажатий в игре
-        return
+ScreenGui.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        -- блокировка действий игры
+        return true
     end
 end)
 
+ScreenGui.InputChanged:Connect(function(input)
+    -- Это для предотвращения взаимодействий с игрой при взаимодействии с меню
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        return true
+    end
+end)
 
+-- Отображение ошибок в консоли
+game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", {
+    Text = "UI Loaded Successfully",
+    Color = Color3.fromRGB(255, 255, 0),
+    Font = Enum.Font.SourceSansBold,
+    TextSize = 24
+})
 
 --// error:
