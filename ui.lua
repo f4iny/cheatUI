@@ -5,12 +5,20 @@ local TitleBar = Instance.new("Frame")
 local TitleLabel = Instance.new("TextLabel")
 local ESPLabel = Instance.new("TextLabel")
 
+-- Добавляем объект для округления углов
+local UICorner = Instance.new("UICorner")
+
 ScreenGui.Parent = game.CoreGui
+
 -- Настройка главного окна
 MainFrame.Parent = ScreenGui
 MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Черный цвет окна
 MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)  -- Начальная позиция окна
 MainFrame.Size = UDim2.new(0, 480, 0, 360)  -- Новый размер окна 480x360 пикселей
+
+-- Применение округления углов к основному фрейму
+UICorner.CornerRadius = UDim.new(0, 13)  -- Радиус округления 13
+UICorner.Parent = MainFrame
 
 -- Настройка верхней части окна (Title Bar)
 TitleBar.Parent = MainFrame
