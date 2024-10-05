@@ -10,7 +10,11 @@ local MainUICorner = Instance.new("UICorner")
 -- Добавляем объект для округления углов верхней части
 local TitleUICorner = Instance.new("UICorner")
 
+-- Настройка ScreenGui
 ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling  -- Меню всегда сверху
+ScreenGui.IgnoreGuiInset = true  -- Отключение границ GUI, чтобы меню было на правильном месте
+ScreenGui.Modal = true  -- Блокирует взаимодействие с элементами игры вне меню
 
 -- Настройка главного окна
 MainFrame.Parent = ScreenGui
@@ -62,61 +66,6 @@ ESPLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
 ESPLabel.TextSize = 24  -- Размер шрифта 24 пункта
 ESPLabel.TextXAlignment = Enum.TextXAlignment.Center  -- Текст по центру горизонтали
 
-
--- Первый CheckBox (Boxes)
-local CheckBox1 = Instance.new("Frame")
-CheckBox1.Parent = MainFrame
-CheckBox1.BackgroundColor3 = Color3.fromHex("D9D9D9")  -- Цвет HEX:D9D9D9
-CheckBox1.BackgroundTransparency = 0.6  -- Alpha канал 100
-CheckBox1.Size = UDim2.new(0, 30, 0, 30)  -- Размер 30x30 пикселей
-CheckBox1.Position = UDim2.new(0, 60, 0, 98)  -- Позиция 60 пикселей от левого края, 98 пикселей от верхнего
-
--- Текст "Boxes"
-local BoxesLabel = Instance.new("TextLabel")
-BoxesLabel.Parent = MainFrame
-BoxesLabel.Text = "Boxes"
-BoxesLabel.Size = UDim2.new(0, 48, 0, 30)  -- Размер текста 48x30 пикселей
-BoxesLabel.Position = UDim2.new(0, 108, 0, 98)  -- Позиция 18 пикселей вправо от правого края первого CheckBox
-BoxesLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
-BoxesLabel.BackgroundTransparency = 1
-BoxesLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
-BoxesLabel.TextSize = 15  -- Размер шрифта 15 пунктов
-BoxesLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Выровнен по левому краю
-
--- Добавляем элемент выбора цвета для первого CheckBox (Boxes)
-local ColorPicker1 = Instance.new("Frame")
-ColorPicker1.Size = UDim2.new(0, 60, 0, 30)
-ColorPicker1.Position = UDim2.new(1, -120, 0, 98)  -- Позиция напротив первого CheckBox
-ColorPicker1.BackgroundColor3 = Color3.fromRGB(217, 217, 217)  -- Цвет как у первого CheckBox
-ColorPicker1.Parent = MainFrame
-
--- Второй CheckBox (Skeleton)
-local CheckBox2 = Instance.new("Frame")
-CheckBox2.Parent = MainFrame
-CheckBox2.BackgroundColor3 = Color3.fromHex("D9D9D9")  -- Цвет HEX:D9D9D9
-CheckBox2.BackgroundTransparency = 0.6  -- Alpha канал 100
-CheckBox2.Size = UDim2.new(0, 30, 0, 30)  -- Размер 30x30 пикселей
-CheckBox2.Position = UDim2.new(0, 60, 0, 156)  -- 28 пикселей ниже самого нижнего края первого CheckBox
-
--- Текст "Skeleton"
-local SkeletonLabel = Instance.new("TextLabel")
-SkeletonLabel.Parent = MainFrame
-SkeletonLabel.Text = "Skeleton"
-SkeletonLabel.Size = UDim2.new(0, 66, 0, 30)  -- Размер текста 66x30 пикселей
-SkeletonLabel.Position = UDim2.new(0, 108, 0, 156)  -- На той же вертикальной позиции, что и второй CheckBox
-SkeletonLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
-SkeletonLabel.BackgroundTransparency = 1
-SkeletonLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
-SkeletonLabel.TextSize = 15  -- Размер шрифта 15 пунктов
-SkeletonLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Выровнен по левому краю
-
--- Добавляем элемент выбора цвета для второго CheckBox (Skeleton)
-local ColorPicker2 = Instance.new("Frame")
-ColorPicker2.Size = UDim2.new(0, 60, 0, 30)
-ColorPicker2.Position = UDim2.new(1, -120, 0, 156)  -- Позиция напротив второго CheckBox
-ColorPicker2.BackgroundColor3 = Color3.fromRGB(217, 217, 217)  -- Цвет как у второго CheckBox
-ColorPicker2.Parent = MainFrame
-
 -- Для перетаскивания только через верхнюю часть (Title Bar)
 local dragging = false
 local dragInput
@@ -160,5 +109,6 @@ UserInputService.InputBegan:Connect(function(input)
         MainFrame.Visible = isMenuVisible
     end
 end)
+
 
 --// error:
