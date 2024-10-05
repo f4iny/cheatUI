@@ -67,14 +67,14 @@ CheckBox2.Parent = MainFrame
 CheckBox2.BackgroundColor3 = Color3.fromHex("D9D9D9")  -- Цвет HEX:D9D9D9
 CheckBox2.BackgroundTransparency = 0.6  -- Alpha канал 100
 CheckBox2.Size = UDim2.new(0, 30, 0, 30)  -- Размер 30x30 пикселей
-CheckBox2.Position = UDim2.new(0, 60, 0, 126)  -- 28 пикселей ниже первого CheckBox
+CheckBox2.Position = UDim2.new(0, 60, 0, 156)  -- 28 пикселей ниже самого нижнего края первого CheckBox
 
 -- Текст "Skeletons"
 local SkeletonsLabel = Instance.new("TextLabel")
 SkeletonsLabel.Parent = MainFrame
 SkeletonsLabel.Text = "Skeletons"
 SkeletonsLabel.Size = UDim2.new(0, 66, 0, 30)  -- Размер текста 66x30 пикселей
-SkeletonsLabel.Position = UDim2.new(0, 108, 0, 126)  -- Позиция 18 пикселей вправо от правого края второго CheckBox
+SkeletonsLabel.Position = UDim2.new(0, 108, 0, 156)  -- На той же вертикальной позиции, что и второй CheckBox
 SkeletonsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
 SkeletonsLabel.BackgroundTransparency = 1
 SkeletonsLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
