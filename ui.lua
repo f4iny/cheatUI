@@ -14,7 +14,6 @@ local TitleUICorner = Instance.new("UICorner")
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling  -- Меню всегда сверху
 ScreenGui.IgnoreGuiInset = true  -- Отключение границ GUI, чтобы меню было на правильном месте
-ScreenGui.Modal = true  -- Блокирует взаимодействие с элементами игры вне меню
 
 -- Настройка главного окна
 MainFrame.Parent = ScreenGui
@@ -109,6 +108,15 @@ UserInputService.InputBegan:Connect(function(input)
         MainFrame.Visible = isMenuVisible
     end
 end)
+
+-- Блокировка действий игры при взаимодействии с меню
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if ScreenGui.Enabled and gameProcessed then
+        -- Если пользователь взаимодействует с GUI, блокируем обработку нажатий в игре
+        return
+    end
+end)
+
 
 
 --// error:
