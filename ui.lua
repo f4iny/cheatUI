@@ -73,6 +73,9 @@ end)
 game:GetService("UserInputService").InputChanged:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseMovement and resizing then
         local delta = input.Position - resizeStart
+        -- Пример расчета без округления и с минимальными ограничениями по размеру
+        local newSizeX = math.max(200, startSize.X.Offset + delta.X)
+        local newSizeY = math.max(150, startSize.Y.Offset + delta.Y)
         MainFrame.Size = UDim2.new(startSize.X.Scale, math.max(200, startSize.X.Offset + delta.X), startSize.Y.Scale, math.max(150, startSize.Y.Offset + delta.Y))
     end
 end)
@@ -88,21 +91,4 @@ UserInputService.InputBegan:Connect(function(input)
     end
 end)
 
--- Функция для вывода уведомления
-local function ShowNotification(message)
-    -- Создаем окно уведомления
-    local notification = Instance.new("TextLabel")
-    notification.Size = UDim2.new(0, 300, 0, 50)
-    notification.Position = UDim2.new(0.5, -150, 0.8, 0)
-    notification.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    notification.TextColor3 = Color3.fromRGB(255, 255, 255)
-    notification.Text = message
-    notification.Parent = game.CoreGui
-    
-    -- Удаляем уведомление через 5 секунд
-    game:GetService("Debris"):AddItem(notification, 5)
-end
-
--- Пример вызова уведомления
-ShowNotification("Меню успешно включено!")
-
+--// error:
