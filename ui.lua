@@ -1,31 +1,77 @@
--- Получаем необходимые сервисы
-local UserInputService = game:GetService("UserInputService")
-local CoreGui = game:GetService("CoreGui")
-
--- Создаем UI
+-- Основной UI для меню
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "MyCustomUI"
-ScreenGui.Parent = CoreGui  -- Перемещаем интерфейс в CoreGui для максимального приоритета
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global  -- UI всегда поверх других элементов
+local MainFrame = Instance.new("Frame")
 
-local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 200, 0, 200)
-Frame.Position = UDim2.new(0.5, -100, 0.5, -100)
-Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 255)  -- Синий цвет
-Frame.Parent = ScreenGui
-Frame.ZIndex = 10  -- Устанавливаем высокий ZIndex, чтобы элемент был выше других
+ScreenGui.Parent = game.CoreGui
 
--- Переменная для отслеживания состояния видимости UI
-local uiVisible = true
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 100, 255)  -- Синий квадрат
+MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)  -- Начальная позиция окна
+MainFrame.Size = UDim2.new(0, 400, 0, 300)  -- Размер окна
 
--- Функция, которая будет вызываться при нажатии клавиши
-local function ToggleUI(input)
-    if input.KeyCode == Enum.KeyCode.End then
-        uiVisible = not uiVisible  -- Меняем состояние на противоположное
-        Frame.Visible = uiVisible  -- Включаем или отключаем UI
-        print("UI visibility toggled: ", uiVisible)
+-- Для перетаскивания
+local dragging = false
+local dragInput
+local dragStart
+local startPos
+
+MainFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = MainFrame.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
     end
-end
+end)
 
--- Подключаем событие нажатия клавиши
-UserInputService.InputBegan:Connect(ToggleUI)
+MainFrame.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        local delta = input.Position - dragStart
+        MainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end)
+
+-- Изменение размера (нижний правый угол)
+local Resizer = Instance.new("Frame")
+Resizer.Parent = MainFrame
+Resizer.BackgroundColor3 = Color3.new(1, 1, 1)
+Resizer.Size = UDim2.new(0, 20, 0, 20)
+Resizer.Position = UDim2.new(1, -20, 1, -20)
+Resizer.AnchorPoint = Vector2.new(1, 1)
+Resizer.Cursor = "SizeNWSE"
+
+local resizing = false
+local resizeStart
+local startSize
+
+Resizer.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        resizing = true
+        resizeStart = input.Position
+        startSize = MainFrame.Size
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                resizing = false
+            end
+        end)
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement and resizing then
+        local delta = input.Position - resizeStart
+        MainFrame.Size = UDim2.new(startSize.X.Scale, math.max(200, startSize.X.Offset + delta.X), startSize.Y.Scale, math.max(150, startSize.Y.Offset + delta.Y))
+    end
+end)
