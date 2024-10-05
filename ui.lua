@@ -6,7 +6,7 @@ local TitleLabel = Instance.new("TextLabel")
 local ESPLabel = Instance.new("TextLabel")
 
 ScreenGui.Parent = game.CoreGui
--- Настройка главного окна
+-- Настройка главного окнаtest
 MainFrame.Parent = ScreenGui
 MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Черный цвет окна
 MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)  -- Начальная позиция окна
