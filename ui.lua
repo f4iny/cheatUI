@@ -1,21 +1,39 @@
 -- Основной UI для меню
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
+local TitleBar = Instance.new("Frame")
+local TitleLabel = Instance.new("TextLabel")
 
 ScreenGui.Parent = game.CoreGui
 
+-- Настройка главного окна
 MainFrame.Parent = ScreenGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(0, 100, 255)  -- Синий квадрат
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Черный цвет окна
 MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)  -- Начальная позиция окна
 MainFrame.Size = UDim2.new(0, 400, 0, 300)  -- Размер окна
 
--- Для перетаскивания
+-- Настройка верхней части окна (Title Bar)
+TitleBar.Parent = MainFrame
+TitleBar.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- Серый цвет для верхней части
+TitleBar.Size = UDim2.new(1, 0, 0, 30)  -- Верхняя часть окна с заголовком
+TitleBar.Position = UDim2.new(0, 0, 0, 0)
+
+-- Настройка текстового заголовка
+TitleLabel.Parent = TitleBar
+TitleLabel.Text = "Eblanix"
+TitleLabel.Size = UDim2.new(1, 0, 1, 0)
+TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Font = Enum.Font.SourceSans
+TitleLabel.TextSize = 20
+
+-- Для перетаскивания только через верхнюю часть (Title Bar)
 local dragging = false
 local dragInput
 local dragStart
 local startPos
 
-MainFrame.InputBegan:Connect(function(input)
+TitleBar.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
         dragging = true
         dragStart = input.Position
@@ -29,7 +47,7 @@ MainFrame.InputBegan:Connect(function(input)
     end
 end)
 
-MainFrame.InputChanged:Connect(function(input)
+TitleBar.InputChanged:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseMovement then
         dragInput = input
     end
