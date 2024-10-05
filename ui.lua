@@ -49,8 +49,9 @@ Resizer.BackgroundColor3 = Color3.new(1, 1, 1)
 Resizer.Size = UDim2.new(0, 20, 0, 20)
 Resizer.Position = UDim2.new(1, -20, 1, -20)
 Resizer.AnchorPoint = Vector2.new(1, 1)
-Resizer.Cursor = "SizeNWSE"
+Resizer.BorderSizePixel = 0
 
+-- Флаг для отслеживания состояния изменения размера
 local resizing = false
 local resizeStart
 local startSize
