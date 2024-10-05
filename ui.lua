@@ -18,7 +18,7 @@ local uiVisible = true
 local function ToggleUI(input)
     if input.KeyCode == Enum.KeyCode.End then
         uiVisible = not uiVisible  -- Меняем состояние на противоположное
-        ScreenGui.Enabled = uiVisible  -- Включаем или отключаем UI
+        Frame.Visible = uiVisible  -- Включаем или отключаем UI
         print("UI visibility toggled: ", uiVisible)
     end
 end
