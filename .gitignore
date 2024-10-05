@@ -1,6 +1,3 @@
-main.lua
+*
+!ui.lua
 
-.vs/ProjectSettings.json
-.vs/slnx.sqlite
-.vs/VSWorkspaceState.json
-.vs/fainyrobloxhack/v17/.wsuo
