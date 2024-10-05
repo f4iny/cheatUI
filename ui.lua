@@ -67,7 +67,7 @@ ColorPicker1.Position = UDim2.new(1, -120, 0, 98)  -- Позиция напро�
 ColorPicker1.BackgroundColor3 = Color3.fromRGB(217, 217, 217)  -- Цвет как у первого CheckBox
 ColorPicker1.Parent = MainFrame
 
--- Второй CheckBox (Skeletons)
+-- Второй CheckBox (Skeleton)
 local CheckBox2 = Instance.new("Frame")
 CheckBox2.Parent = MainFrame
 CheckBox2.BackgroundColor3 = Color3.fromHex("D9D9D9")  -- Цвет HEX:D9D9D9
@@ -75,19 +75,19 @@ CheckBox2.BackgroundTransparency = 0.6  -- Alpha канал 100
 CheckBox2.Size = UDim2.new(0, 30, 0, 30)  -- Размер 30x30 пикселей
 CheckBox2.Position = UDim2.new(0, 60, 0, 156)  -- 28 пикселей ниже самого нижнего края первого CheckBox
 
--- Текст "Skeletons"
-local SkeletonsLabel = Instance.new("TextLabel")
-SkeletonsLabel.Parent = MainFrame
-SkeletonsLabel.Text = "Skeletons"
-SkeletonsLabel.Size = UDim2.new(0, 66, 0, 30)  -- Размер текста 66x30 пикселей
-SkeletonsLabel.Position = UDim2.new(0, 108, 0, 156)  -- На той же вертикальной позиции, что и второй CheckBox
-SkeletonsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
-SkeletonsLabel.BackgroundTransparency = 1
-SkeletonsLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
-SkeletonsLabel.TextSize = 15  -- Размер шрифта 15 пунктов
-SkeletonsLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Выровнен по левому краю
+-- Текст "Skeleton"
+local SkeletonLabel = Instance.new("TextLabel")
+SkeletonLabel.Parent = MainFrame
+SkeletonLabel.Text = "Skeleton"
+SkeletonLabel.Size = UDim2.new(0, 66, 0, 30)  -- Размер текста 66x30 пикселей
+SkeletonLabel.Position = UDim2.new(0, 108, 0, 156)  -- На той же вертикальной позиции, что и второй CheckBox
+SkeletonLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
+SkeletonLabel.BackgroundTransparency = 1
+SkeletonLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
+SkeletonLabel.TextSize = 15  -- Размер шрифта 15 пунктов
+SkeletonLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Выровнен по левому краю
 
--- Добавляем элемент выбора цвета для второго CheckBox (Skeletons)
+-- Добавляем элемент выбора цвета для второго CheckBox (Skeleton)
 local ColorPicker2 = Instance.new("Frame")
 ColorPicker2.Size = UDim2.new(0, 60, 0, 30)
 ColorPicker2.Position = UDim2.new(1, -120, 0, 156)  -- Позиция напротив второго CheckBox
