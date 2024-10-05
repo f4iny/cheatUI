@@ -70,13 +70,19 @@ Resizer.InputBegan:Connect(function(input)
     end
 end)
 
+-- Логика для растягивания меню
 game:GetService("UserInputService").InputChanged:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseMovement and resizing then
-        local delta = input.Position - resizeStart
-        -- Пример расчета без округления и с минимальными ограничениями по размеру
+        local delta = Vector2.new(input.Position.X - resizeStart.X, input.Position.Y - resizeStart.Y)
+        
+        -- Обновляем размеры окна на основе движения мыши и сохраняем курсор на краю
         local newSizeX = math.max(200, startSize.X.Offset + delta.X)
         local newSizeY = math.max(150, startSize.Y.Offset + delta.Y)
-        MainFrame.Size = UDim2.new(startSize.X.Scale, math.max(200, startSize.X.Offset + delta.X), startSize.Y.Scale, math.max(150, startSize.Y.Offset + delta.Y))
+        
+        MainFrame.Size = UDim2.new(0, newSizeX, 0, newSizeY)
+        
+        -- Обновляем позицию ресайзера (чтобы он оставался на правом нижнем углу)
+        Resizer.Position = UDim2.new(1, -20, 1, -20)
     end
 end)
 
