@@ -76,3 +76,14 @@ game:GetService("UserInputService").InputChanged:Connect(function(input)
         MainFrame.Size = UDim2.new(startSize.X.Scale, math.max(200, startSize.X.Offset + delta.X), startSize.Y.Scale, math.max(150, startSize.Y.Offset + delta.Y))
     end
 end)
+
+-- Тоггл меню на клавишу End
+local UserInputService = game:GetService("UserInputService")
+local isMenuVisible = true
+
+UserInputService.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.End then
+        isMenuVisible = not isMenuVisible
+        MainFrame.Visible = isMenuVisible
+    end
+end)
