@@ -3,6 +3,7 @@ local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TitleBar = Instance.new("Frame")
 local TitleLabel = Instance.new("TextLabel")
+local ESPLabel = Instance.new("TextLabel")
 
 ScreenGui.Parent = game.CoreGui
 
@@ -18,16 +19,27 @@ TitleBar.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- Серый цвет �
 TitleBar.Size = UDim2.new(0, 480, 0, 36)  -- Новый размер верхней панели 480x36 пикселей
 TitleBar.Position = UDim2.new(0, 0, 0, 0)
 
--- Настройка текстового заголовка
+-- Настройка текстового заголовка "Eblanix"
 TitleLabel.Parent = TitleBar
 TitleLabel.Text = "Eblanix"
-TitleLabel.Size = UDim2.new(0, 72, 0, 36)  -- Новый размер текста 72x36 пикселей
+TitleLabel.Size = UDim2.new(0, 72, 0, 36)  -- Размер текста 72x36 пикселей
 TitleLabel.Position = UDim2.new(0, 16, 0, 0)  -- Отступ 16 пикселей от левого края
 TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
 TitleLabel.BackgroundTransparency = 1
 TitleLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
 TitleLabel.TextSize = 16  -- Размер шрифта 16 пунктов
 TitleLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Текст выровнен по левому краю
+
+-- Настройка текста "ESP"
+ESPLabel.Parent = MainFrame
+ESPLabel.Text = "ESP"
+ESPLabel.Size = UDim2.new(0, 60, 0, 30)  -- Размер текста 60x30 пикселей
+ESPLabel.Position = UDim2.new(0.5, -30, 0, 36 + 16)  -- 16 пикселей вниз от нижней границы верхней панели
+ESPLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
+ESPLabel.BackgroundTransparency = 1
+ESPLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
+ESPLabel.TextSize = 24  -- Размер шрифта 24 пункта
+ESPLabel.TextXAlignment = Enum.TextXAlignment.Center  -- Текст по центру горизонтали
 
 -- Для перетаскивания только через верхнюю часть (Title Bar)
 local dragging = false
