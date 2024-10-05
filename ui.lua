@@ -1,9 +1,11 @@
--- Получаем сервис для обработки ввода
+-- Получаем необходимые сервисы
 local UserInputService = game:GetService("UserInputService")
+local CoreGui = game:GetService("CoreGui")
 
 -- Создаем UI
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Name = "MyCustomUI"
+ScreenGui.Parent = CoreGui  -- Перемещаем интерфейс в CoreGui для максимального приоритета
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global  -- UI всегда поверх других элементов
 
 local Frame = Instance.new("Frame")
