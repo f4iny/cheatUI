@@ -41,6 +41,46 @@ ESPLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
 ESPLabel.TextSize = 24  -- Размер шрифта 24 пункта
 ESPLabel.TextXAlignment = Enum.TextXAlignment.Center  -- Текст по центру горизонтали
 
+-- Первый CheckBox (Boxes)
+local CheckBox1 = Instance.new("Frame")
+CheckBox1.Parent = MainFrame
+CheckBox1.BackgroundColor3 = Color3.fromHex("D9D9D9")  -- Цвет HEX:D9D9D9
+CheckBox1.BackgroundTransparency = 0.6  -- Alpha канал 100
+CheckBox1.Size = UDim2.new(0, 30, 0, 30)  -- Размер 30x30 пикселей
+CheckBox1.Position = UDim2.new(0, 60, 0, 98)  -- Позиция 60 пикселей от левого края, 98 пикселей от верхнего
+
+-- Текст "Boxes"
+local BoxesLabel = Instance.new("TextLabel")
+BoxesLabel.Parent = MainFrame
+BoxesLabel.Text = "Boxes"
+BoxesLabel.Size = UDim2.new(0, 48, 0, 30)  -- Размер текста 48x30 пикселей
+BoxesLabel.Position = UDim2.new(0, 108, 0, 98)  -- Позиция 18 пикселей вправо от правого края первого CheckBox
+BoxesLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
+BoxesLabel.BackgroundTransparency = 1
+BoxesLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
+BoxesLabel.TextSize = 15  -- Размер шрифта 15 пунктов
+BoxesLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Выровнен по левому краю
+
+-- Второй CheckBox (Skeletons)
+local CheckBox2 = Instance.new("Frame")
+CheckBox2.Parent = MainFrame
+CheckBox2.BackgroundColor3 = Color3.fromHex("D9D9D9")  -- Цвет HEX:D9D9D9
+CheckBox2.BackgroundTransparency = 0.6  -- Alpha канал 100
+CheckBox2.Size = UDim2.new(0, 30, 0, 30)  -- Размер 30x30 пикселей
+CheckBox2.Position = UDim2.new(0, 60, 0, 126)  -- 28 пикселей ниже первого CheckBox
+
+-- Текст "Skeletons"
+local SkeletonsLabel = Instance.new("TextLabel")
+SkeletonsLabel.Parent = MainFrame
+SkeletonsLabel.Text = "Skeletons"
+SkeletonsLabel.Size = UDim2.new(0, 66, 0, 30)  -- Размер текста 66x30 пикселей
+SkeletonsLabel.Position = UDim2.new(0, 108, 0, 126)  -- Позиция 18 пикселей вправо от правого края второго CheckBox
+SkeletonsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый цвет текста
+SkeletonsLabel.BackgroundTransparency = 1
+SkeletonsLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
+SkeletonsLabel.TextSize = 15  -- Размер шрифта 15 пунктов
+SkeletonsLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Выровнен по левому краю
+
 -- Для перетаскивания только через верхнюю часть (Title Bar)
 local dragging = false
 local dragInput
