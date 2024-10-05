@@ -9,12 +9,15 @@ MainFrame.BackgroundColor3 = Color3.fromRGB(0, 100, 255)  -- Синий квад
 MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)  -- Начальная позиция окна
 MainFrame.Size = UDim2.new(0, 400, 0, 300)  -- Размер окна
 
--- Для перетаскивания
+-- Переменные для отслеживания действий
 local dragging = false
-local dragInput
-local dragStart
-local startPos
+local resizing = false
+local dragStart, startSize, startPos, resizeStart
 
+-- Минимальные размеры окна
+local minSizeX, minSizeY = 200, 150
+
+-- Для перетаскивания окна
 MainFrame.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
         dragging = true
@@ -42,47 +45,71 @@ game:GetService("UserInputService").InputChanged:Connect(function(input)
     end
 end)
 
--- Изменение размера (нижний правый угол)
-local Resizer = Instance.new("Frame")
-Resizer.Parent = MainFrame
-Resizer.BackgroundColor3 = Color3.new(1, 1, 1)
-Resizer.Size = UDim2.new(0, 20, 0, 20)
-Resizer.Position = UDim2.new(1, -20, 1, -20)
-Resizer.AnchorPoint = Vector2.new(1, 1)
-Resizer.BorderSizePixel = 0
+-- Функция для определения нахождения курсора на границе окна
+local function getResizeDirection(inputPos)
+    local pos = MainFrame.AbsolutePosition
+    local size = MainFrame.AbsoluteSize
+    local borderSize = 10  -- Ширина зоны для растягивания
 
--- Флаг для отслеживания состояния изменения размера
-local resizing = false
-local resizeStart
-local startSize
+    local resizingDirection = {}
 
-Resizer.InputBegan:Connect(function(input)
+    if inputPos.X >= pos.X + size.X - borderSize then
+        table.insert(resizingDirection, "Right")
+    elseif inputPos.X <= pos.X + borderSize then
+        table.insert(resizingDirection, "Left")
+    end
+
+    if inputPos.Y >= pos.Y + size.Y - borderSize then
+        table.insert(resizingDirection, "Bottom")
+    elseif inputPos.Y <= pos.Y + borderSize then
+        table.insert(resizingDirection, "Top")
+    end
+
+    return resizingDirection
+end
+
+-- Начало растягивания
+MainFrame.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        resizing = true
-        resizeStart = input.Position
-        startSize = MainFrame.Size
-        
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                resizing = false
-            end
-        end)
+        local direction = getResizeDirection(input.Position)
+        if #direction > 0 then
+            resizing = true
+            resizeStart = input.Position
+            startSize = MainFrame.Size
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    resizing = false
+                end
+            end)
+        end
     end
 end)
 
--- Логика для растягивания меню
+-- Логика для изменения размеров
 game:GetService("UserInputService").InputChanged:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseMovement and resizing then
-        local delta = Vector2.new(input.Position.X - resizeStart.X, input.Position.Y - resizeStart.Y)
-        
-        -- Обновляем размеры окна на основе движения мыши и сохраняем курсор на краю
-        local newSizeX = math.max(200, startSize.X.Offset + delta.X)
-        local newSizeY = math.max(150, startSize.Y.Offset + delta.Y)
-        
+        local direction = getResizeDirection(input.Position)
+        local delta = input.Position - resizeStart
+        local newSizeX = startSize.X.Offset
+        local newSizeY = startSize.Y.Offset
+
+        -- Изменяем размеры в зависимости от стороны
+        for _, dir in pairs(direction) do
+            if dir == "Right" then
+                newSizeX = math.max(minSizeX, startSize.X.Offset + delta.X)
+            elseif dir == "Left" then
+                newSizeX = math.max(minSizeX, startSize.X.Offset - delta.X)
+                MainFrame.Position = UDim2.new(0, MainFrame.Position.X.Offset + delta.X, 0, MainFrame.Position.Y.Offset)
+            elseif dir == "Bottom" then
+                newSizeY = math.max(minSizeY, startSize.Y.Offset + delta.Y)
+            elseif dir == "Top" then
+                newSizeY = math.max(minSizeY, startSize.Y.Offset - delta.Y)
+                MainFrame.Position = UDim2.new(0, MainFrame.Position.X.Offset, 0, MainFrame.Position.Y.Offset + delta.Y)
+            end
+        end
+
         MainFrame.Size = UDim2.new(0, newSizeX, 0, newSizeY)
-        
-        -- Обновляем позицию ресайзера (чтобы он оставался на правом нижнем углу)
-        Resizer.Position = UDim2.new(1, -20, 1, -20)
     end
 end)
 
@@ -96,5 +123,3 @@ UserInputService.InputBegan:Connect(function(input)
         MainFrame.Visible = isMenuVisible
     end
 end)
-
---// error:
