@@ -8,7 +8,7 @@ ScreenGui.Parent = game.CoreGui
 
 -- Настройка главного окна
 MainFrame.Parent = ScreenGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Черный цвет окна
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 255)  -- Черный цвет окна
 MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)  -- Начальная позиция окна
 MainFrame.Size = UDim2.new(0, 400, 0, 300)  -- Размер окна 400x300 пикселей
 
