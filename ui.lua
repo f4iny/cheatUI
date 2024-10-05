@@ -60,6 +60,13 @@ BoxesLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
 BoxesLabel.TextSize = 15  -- Размер шрифта 15 пунктов
 BoxesLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Выровнен по левому краю
 
+-- Добавляем элемент выбора цвета для первого CheckBox (Boxes)
+local ColorPicker1 = Instance.new("Frame")
+ColorPicker1.Size = UDim2.new(0, 60, 0, 30)
+ColorPicker1.Position = UDim2.new(1, -120, 0, 98)  -- Позиция напротив первого CheckBox
+ColorPicker1.BackgroundColor3 = Color3.fromRGB(217, 217, 217)  -- Цвет как у первого CheckBox
+ColorPicker1.Parent = MainFrame
+
 -- Второй CheckBox (Skeletons)
 local CheckBox2 = Instance.new("Frame")
 CheckBox2.Parent = MainFrame
@@ -79,6 +86,13 @@ SkeletonsLabel.BackgroundTransparency = 1
 SkeletonsLabel.Font = Enum.Font.GothamBold  -- Шрифт GothamBold
 SkeletonsLabel.TextSize = 15  -- Размер шрифта 15 пунктов
 SkeletonsLabel.TextXAlignment = Enum.TextXAlignment.Left  -- Выровнен по левому краю
+
+-- Добавляем элемент выбора цвета для второго CheckBox (Skeletons)
+local ColorPicker2 = Instance.new("Frame")
+ColorPicker2.Size = UDim2.new(0, 60, 0, 30)
+ColorPicker2.Position = UDim2.new(1, -120, 0, 156)  -- Позиция напротив второго CheckBox
+ColorPicker2.BackgroundColor3 = Color3.fromRGB(217, 217, 217)  -- Цвет как у второго CheckBox
+ColorPicker2.Parent = MainFrame
 
 -- Для перетаскивания только через верхнюю часть (Title Bar)
 local dragging = false
